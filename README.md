@@ -4,66 +4,42 @@
 
 步驟
 ---
-1. 計算輸入影像$I$的Dark Channel $\rightarrow D(x)$
-    \begin{aligned}
-    D(x) = \min_{c \in \{r, g, b\}}(\min_{y \in \Omega(x)} (\frac{I^c(y)}{A^c}))
-    \end{aligned}
-
-
-    * $A^c$設定為$[255,255,255]$
-    * 最小值濾波器(minimum filter)大小設定為$15 \times 15$
-
-
-
----
-
-2. 計算transmission map $\rightarrow t(x)$
-    \begin{aligned}
-    t(x) = 1-\omega\times D(x)
-    \end{aligned}
+1. 計算輸入影像*I*的Dark Channel $\rightarrow$ *D(x)*
     
-    * $\omega$設定為$0.95$
+    >$$D(x) = \min_{c \in \{r, g, b\}}(\min_{y \in \Omega(x)} (\frac{I^c(y)}{A^c}))$$
+    >* $A^c$設定為[255,255,255]
+    >* 最小值濾波器(minimum filter)大小設定為15 $\times$ 15
 
-
----
-
-3. 使用[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)精煉、提煉(refine)$D(x)$得到新的$D^{'}(x)$
-    \begin{aligned}
-    D^{'}(x) = guide filter\{D(x)\}
-    \end{aligned}
-    * $\sigma$設定為$10^{-3}$($\sigma$為[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)使用參數)
-    * $r$設定為$20$($r$為[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)使用參數).
+2. 計算transmission map $\rightarrow$ *t(x)*
     
-        * <span style="color:red">問題:作為guided的影像必須為0\~255的資料型態，不能是0\~1的資料型態，不知道是甚麼原因</span>
+    >$$t(x) = 1-\omega\times D(x)$$
+    >* $\omega$設定為0.95
 
 
----
+3. 使用[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)精煉、提煉(refine)*D(x)*得到新的*D'(x)*
+    
+    >$$D^{'}(x) = guide filter\{D(x)\}$$
+    >* $\sigma$設定為$10^(-3)$($\sigma$為[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)使用參數)
+    >* $r$設定為$20$($r$為[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)使用參數).
+
+   <font color=red>問題:作為guided的影像必須為0\~255的資料型態，不能是0\~1的資料型態，不知道是甚麼原因</font>
 
 4. 使用新得到的$D^{'}(x)$根據步驟2計算新的transmission map$\rightarrow t^{'}(x)$
-    \begin{aligned}
-    t^{'}(x) = 1-\omega\times D^{'}(x)
-    \end{aligned}
     
-    * $\omega$設定為$0.95$
+    >$$t^{'}(x) = 1-\omega\times D^{'}(x)$$
+    >* $\omega$設定為$0.95$
 
 
----
+5. 使用{\bf{D(x)}}計算Atomspheric Light
+    >* 對$D(x)$找前$0.1\%$強度值的位置，再對應找輸入影像$I$三個Channel相對位置的強度值，並計算平均
+    >* $A$會為[$mean_B$,$mean_G$,$mean_R$]
 
-5. 使用$D(x)$計算Atomspheric Light
-    * 對$D(x)$找前$0.1\%$強度值的位置，再對應找輸入影像$I$三個Channel相對位置的強度值，並計算平均
-    * $A$會為[$mean_B$,$mean_G$,$mean_R$]
-
-
----
 
 6. 計算去霧影像(haze-free image)
-    \begin{aligned}
-    \mathbf{J}(x) = \frac{\mathbf{I}(x)-\mathbf{A}}{max(t^{'}(x),t_0)}+\mathbf{A}
-    \end{aligned}
-
-
-    * $t_0$設定為$0.1$
-    * $\mathbf{J}$、$\mathbf{I}$、$\mathbf{A}$ 各代表三個Channel
+    
+    >$$\mathbf{J}(x) = \frac{\mathbf{I}(x)-\mathbf{A}}{max(t^{'}(x),t_0)}+\mathbf{A}$$
+    >* $t_0$設定為$0.1$
+    >* [$\mathbf{J}$、$\mathbf{I}$、$\mathbf{A}$] 各代表三個Channel
 
 
 
