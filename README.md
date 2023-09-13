@@ -1,4 +1,4 @@
-# Dark_Channel_Prior
+# Dark-Channel-Prior
 使用Python實作[Single Image Haze Removal Using Dark Channel Prior](https://ieeexplore.ieee.org/document/5567108)此篇論文的影像去霧演算法
 
 
