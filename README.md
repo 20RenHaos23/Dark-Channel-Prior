@@ -22,7 +22,7 @@
     >* $\sigma$ 設定為 $0.001$ ( $\sigma$ 為[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)使用參數)
     >* $r$ 設定為 $20$ ( $r$ 為[引導濾波器(guide filter)](https://ieeexplore.ieee.org/document/6319316)使用參數).
 
-   $\color {red} {問題:作為guided的影像必須為0\~255的資料型態，不能是0\~1的資料型態，不知道是甚麼原因}$
+   $\color {red} {問題:作為guided的影像必須為0 $\sim$ 255的資料型態，不能是0 $\sim$ 1的資料型態，不知道是甚麼原因}$
 
 4. 使用新得到的 $D^{'}(x)$ 根據步驟2計算新的transmission map $\rightarrow$ $t^{'}(x)$
     
