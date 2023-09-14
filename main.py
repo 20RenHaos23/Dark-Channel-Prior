@@ -60,7 +60,7 @@ def est_atomspheric_light(img, d_c):
     return A
 
 
-def dark_channel(img, size=15):
+def dark_channel(img, size):
     
     img = np.float32(img) / 255
 
