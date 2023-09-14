@@ -74,7 +74,7 @@ def dark_channel(img, size):
     #使用最小值濾波器
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (size, size))
     dark_min = cv2.erode(dark, kernel)
-    #dark_min = scipy.ndimage.minimum_filter(dark, 15)#這個也有一樣的結果
+    #dark_min = scipy.ndimage.minimum_filter(dark, size)#這個也有一樣的結果
     cv2.imshow("dark_channel",dark_min)
     #cv2.waitKey(1000)
     #cv2.destroyAllWindows()
