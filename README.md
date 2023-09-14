@@ -30,7 +30,7 @@
     >* $\omega$設定為 $0.95$
 
 
-5. 使用{\bf{D(x)}}計算Atomspheric Light
+5. 使用 $D(x)$ 計算Atomspheric Light
     >* 對 $D(x)$ 找前 $0.1\%$ 強度值的位置，再對應找輸入影像 $I$ 三個Channel相對位置的強度值，並計算平均
     >* $A$ 會為 $[$ $mean_B$ , $mean_G$ , $mean_R$ $]$
 
