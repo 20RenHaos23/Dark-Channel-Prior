@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def dehaze(I,A,t, clip_min=0.1, clip_max=999):
+def dehaze(I,A,t, clip_min=0.1, clip_max=None):
    
     I = np.float32(I) / 255
  
